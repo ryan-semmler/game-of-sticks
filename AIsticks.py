@@ -11,13 +11,15 @@ def start():
             print("Pick a number.")
 
 
-def pick_up(stick_count):
+def pick_up(stick_count, dic):
     while True:
         if stick_count > 2:
             try:
                 picked_up = int(input("Pick up some sticks: (1-3) "))
                 if picked_up <= stick_count and picked_up <= 3 and picked_up > 0:
                     return picked_up
+                elif picked_up == 0:
+                    print(dic)
             except ValueError:
                 pass
         elif stick_count == 2:
@@ -49,7 +51,7 @@ def main():
         is_player_turn = True
         while stick_count > 0: #turn loop
             show_board(stick_count)
-            stick_count -= pick_up(stick_count)
+            stick_count -= pick_up(stick_count, dic)
             is_player_turn = switch_player(is_player_turn)
             if stick_count == 0:
                 break
@@ -97,6 +99,3 @@ def AI_turn(turns_made, stick_count, dic):
 
 if __name__ == '__main__':
     main()
-
-
-# print(add_to_entry(4, {4: [1, 2, 3]}, 1))
